@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="game-shell" aria-labelledby="page-title">
+      <section class="hero">
+        <p class="eyebrow">Classic arcade fun</p>
+        <h1 id="page-title">Snake</h1>
+        <p class="intro">
+          Guide the snake to the glowing snacks, grow your score, and avoid
+          crashing into the walls or yourself.
+        </p>
+      </section>
+
+      <section class="game-card" aria-label="Snake game">
+        <div class="scoreboard" aria-live="polite">
+          <div>
+            <span class="label">Score</span>
+            <strong id="score">0</strong>
+          </div>
+          <div>
+            <span class="label">Best</span>
+            <strong id="best-score">0</strong>
+          </div>
+        </div>
+
+        <canvas
+          id="game-board"
+          width="420"
+          height="420"
+          aria-label="Snake game board"
+          role="img"
+        ></canvas>
+
+        <p id="status" class="status">Press Start or an arrow key to play.</p>
+
+        <div class="controls" aria-label="Game controls">
+          <button id="start-button" type="button">Start Game</button>
+          <button id="pause-button" type="button">Pause</button>
+        </div>
+
+        <div class="mobile-controls" aria-label="On-screen direction controls">
+          <button type="button" data-direction="up" aria-label="Move up">▲</button>
+          <div>
+            <button type="button" data-direction="left" aria-label="Move left">◀</button>
+            <button type="button" data-direction="down" aria-label="Move down">▼</button>
+            <button type="button" data-direction="right" aria-label="Move right">▶</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="how-to-play" aria-labelledby="how-to-title">
+        <h2 id="how-to-title">How to play</h2>
+        <ul>
+          <li>Use the arrow keys, WASD, or the on-screen buttons to turn.</li>
+          <li>Eat each snack to grow longer and earn points.</li>
+          <li>Press Space to pause or resume the game.</li>
+        </ul>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
