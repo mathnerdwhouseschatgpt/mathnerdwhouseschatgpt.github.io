@@ -12,6 +12,7 @@ const directionButtons = document.querySelectorAll("[data-direction]");
 
 const tileCount = 20;
 const tileSize = canvas.width / tileCount;
+const gridColor = "rgba(148, 163, 184, 0.12)";
 const tickSpeed = 115;
 const storageKey = "snake-best-score";
 const powerUpLifetime = 6500;
@@ -319,10 +320,29 @@ function endGame() {
 
 function drawBoard() {
   context.clearRect(0, 0, canvas.width, canvas.height);
+  drawGrid();
   drawSnack();
   drawPowerUp();
   drawSnake();
   drawParticles();
+}
+
+function drawGrid() {
+  context.save();
+  context.strokeStyle = gridColor;
+  context.lineWidth = 1;
+  context.beginPath();
+
+  for (let index = 0; index <= tileCount; index += 1) {
+    const position = index * tileSize + 0.5;
+    context.moveTo(position, 0);
+    context.lineTo(position, canvas.height);
+    context.moveTo(0, position);
+    context.lineTo(canvas.width, position);
+  }
+
+  context.stroke();
+  context.restore();
 }
 
 function drawSnake() {
