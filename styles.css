@@ -8,6 +8,8 @@
   --accent: #6ee7b7;
   --accent-strong: #34d399;
   --danger: #fb7185;
+  --bonus: #facc15;
+  --frenzy: #c084fc;
   --grid: rgba(148, 163, 184, 0.12);
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
@@ -23,9 +25,25 @@ body {
   margin: 0;
   color: var(--text);
   background:
+    radial-gradient(circle at 8% 12%, rgba(250, 204, 21, 0.18), transparent 19rem),
     radial-gradient(circle at top left, rgba(52, 211, 153, 0.26), transparent 32rem),
-    radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.22), transparent 28rem),
+    radial-gradient(circle at bottom right, rgba(192, 132, 252, 0.2), transparent 28rem),
     var(--bg);
+  overflow-x: hidden;
+}
+
+body::before {
+  animation: float-orbs 16s ease-in-out infinite alternate;
+  background:
+    radial-gradient(circle, rgba(110, 231, 183, 0.18), transparent 9rem),
+    radial-gradient(circle, rgba(250, 204, 21, 0.14), transparent 7rem);
+  content: "";
+  filter: blur(4px);
+  inset: -10% 10% auto auto;
+  min-height: 22rem;
+  pointer-events: none;
+  position: fixed;
+  width: 22rem;
 }
 
 button {
@@ -63,10 +81,11 @@ button:disabled {
   gap: 2rem;
   grid-template-columns: minmax(16rem, 1fr) minmax(20rem, 31rem);
   margin: 0 auto;
-  max-width: 68rem;
+  max-width: 72rem;
   min-height: 100vh;
   padding: 3rem 1.25rem;
   place-content: center;
+  position: relative;
 }
 
 .hero,
@@ -90,6 +109,10 @@ p {
 }
 
 h1 {
+  background: linear-gradient(135deg, #ffffff 8%, var(--accent) 42%, var(--bonus));
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 16px 34px rgba(52, 211, 153, 0.16));
   font-size: clamp(3.8rem, 13vw, 8rem);
   letter-spacing: -0.08em;
   line-height: 0.9;
@@ -103,9 +126,26 @@ h1 {
   max-width: 34rem;
 }
 
+.feature-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.25rem;
+}
+
+.feature-badges span {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: #dffcf0;
+  font-size: 0.9rem;
+  font-weight: 800;
+  padding: 0.55rem 0.8rem;
+}
+
 .game-card,
 .how-to-play {
-  background: var(--panel);
+  background: linear-gradient(145deg, rgba(15, 30, 54, 0.94), var(--panel));
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 2rem;
   box-shadow: var(--shadow);
@@ -114,13 +154,25 @@ h1 {
 
 .game-card {
   backdrop-filter: blur(18px);
+  position: relative;
+}
+
+.game-card::before {
+  background: linear-gradient(90deg, var(--accent), var(--bonus), var(--frenzy));
+  border-radius: 999px;
+  content: "";
+  height: 0.25rem;
+  inset: 0.8rem 1.6rem auto;
+  opacity: 0.9;
+  position: absolute;
 }
 
 .scoreboard {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   margin-bottom: 1rem;
+  padding-top: 0.65rem;
 }
 
 .scoreboard > div {
@@ -133,7 +185,7 @@ h1 {
 .label {
   color: var(--muted);
   display: block;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -141,9 +193,13 @@ h1 {
 
 .scoreboard strong {
   display: block;
-  font-size: 2rem;
+  font-size: clamp(1.25rem, 4vw, 2rem);
   line-height: 1;
   margin-top: 0.35rem;
+}
+
+.board-wrap {
+  position: relative;
 }
 
 #game-board {
@@ -151,13 +207,37 @@ h1 {
   background:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(110, 231, 183, 0.08), transparent 18rem),
     #071827;
-  background-size: 21px 21px;
+  background-size: 21px 21px, 21px 21px, 100% 100%, 100% 100%;
   border: 2px solid rgba(110, 231, 183, 0.38);
   border-radius: 1.25rem;
   display: block;
   max-width: 100%;
   width: 100%;
+}
+
+.frenzy-banner {
+  background: linear-gradient(135deg, rgba(250, 204, 21, 0.96), rgba(192, 132, 252, 0.96));
+  border-radius: 999px;
+  box-shadow: 0 18px 60px rgba(192, 132, 252, 0.35);
+  color: #190b2f;
+  font-weight: 1000;
+  left: 50%;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  padding: 0.65rem 1rem;
+  pointer-events: none;
+  position: absolute;
+  text-transform: uppercase;
+  top: 1rem;
+  transform: translate(-50%, -0.6rem) scale(0.92);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.frenzy-banner.is-active {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
 }
 
 .status {
@@ -216,6 +296,22 @@ h1 {
   line-height: 1.6;
   margin: 0;
   padding-left: 1.25rem;
+}
+
+@keyframes float-orbs {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  to {
+    transform: translate3d(-3rem, 4rem, 0) rotate(18deg);
+  }
+}
+
+@media (max-width: 880px) {
+  .scoreboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 760px) {
