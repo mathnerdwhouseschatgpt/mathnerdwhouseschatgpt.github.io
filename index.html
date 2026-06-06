@@ -3,82 +3,47 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Snake Game</title>
+    <title>Break Shot Billiards</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="game-shell" aria-labelledby="page-title">
-      <section class="hero">
-        <p class="eyebrow">Classic arcade fun</p>
-        <h1 id="page-title">Snake</h1>
+    <main class="game-shell">
+      <section class="hero" aria-labelledby="game-title">
+        <p class="eyebrow">GitHub Pages Arcade</p>
+        <h1 id="game-title">Break Shot Billiards</h1>
         <p class="intro">
-          Guide the snake to glowing snacks, chase bonus stars, build a combo,
-          and avoid crashing into the walls or yourself.
+          Aim with your mouse, pull back to set power, and clear the table. Sink every striped and solid ball before the 8-ball.
         </p>
-        <div class="feature-badges" aria-label="New game features">
-          <span>⭐ Bonus stars</span>
-          <span>🔥 Frenzy mode</span>
-          <span>✨ Neon trails</span>
-        </div>
       </section>
 
-      <section class="game-card" aria-label="Snake game">
-        <div class="scoreboard" aria-live="polite">
-          <div>
-            <span class="label">Score</span>
-            <strong id="score">0</strong>
-          </div>
-          <div>
-            <span class="label">Best</span>
-            <strong id="best-score">0</strong>
-          </div>
-          <div>
-            <span class="label">Combo</span>
-            <strong id="combo-count">x1</strong>
-          </div>
-          <div>
-            <span class="label">Frenzy</span>
-            <strong id="frenzy-meter">Ready</strong>
-          </div>
+      <section class="scoreboard" aria-label="Game status">
+        <div class="stat-card">
+          <span class="stat-label">Shots</span>
+          <strong id="shots">0</strong>
         </div>
-
-        <div class="board-wrap">
-          <canvas
-            id="game-board"
-            width="420"
-            height="420"
-            aria-label="Snake game board"
-            role="img"
-          ></canvas>
-          <div id="frenzy-banner" class="frenzy-banner" aria-hidden="true">
-            2x Frenzy!
-          </div>
+        <div class="stat-card">
+          <span class="stat-label">Balls left</span>
+          <strong id="balls-left">15</strong>
         </div>
-
-        <p id="status" class="status">Press Start or an arrow key to play.</p>
-
-        <div class="controls" aria-label="Game controls">
-          <button id="start-button" type="button">Start Game</button>
-          <button id="pause-button" type="button">Pause</button>
+        <div class="stat-card wide">
+          <span class="stat-label">Status</span>
+          <strong id="status">Line up the break!</strong>
         </div>
-
-        <div class="mobile-controls" aria-label="On-screen direction controls">
-          <button type="button" data-direction="up" aria-label="Move up">▲</button>
-          <div>
-            <button type="button" data-direction="left" aria-label="Move left">◀</button>
-            <button type="button" data-direction="down" aria-label="Move down">▼</button>
-            <button type="button" data-direction="right" aria-label="Move right">▶</button>
-          </div>
-        </div>
+        <button id="reset" type="button">Reset table</button>
       </section>
 
-      <section class="how-to-play" aria-labelledby="how-to-title">
-        <h2 id="how-to-title">How to play</h2>
+      <section class="table-wrap" aria-label="Playable pool table">
+        <canvas id="pool-table" width="1000" height="560">
+          Your browser does not support HTML canvas. Please use a modern browser to play Break Shot Billiards.
+        </canvas>
+      </section>
+
+      <section class="instructions" aria-label="How to play">
+        <h2>How to play</h2>
         <ul>
-          <li>Use the arrow keys, WASD, or the on-screen buttons to turn.</li>
-          <li>Eat each snack to grow longer, earn points, and build your combo.</li>
-          <li>Catch a bonus star before it vanishes to trigger 2x Frenzy scoring.</li>
-          <li>Press Space to pause or resume the game.</li>
+          <li>Click and drag from the cue ball to aim. The farther you pull, the harder you shoot.</li>
+          <li>Release the mouse button to strike once the aiming line looks right.</li>
+          <li>Pocket all numbered balls. The 8-ball can only be sunk after every other ball is gone.</li>
         </ul>
       </section>
     </main>
